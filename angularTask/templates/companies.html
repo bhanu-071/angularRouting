@@ -1,0 +1,38 @@
+<div class="Container-fluid">
+  <div class="row">
+    <horizontal-navbar></horizontal-navbar>
+  </div>
+  <div class="row">
+    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+      <vertical-navbar> </vertical-navbar>
+    </div>
+    <div class="col-8 col-md-10">
+      <div class="m-1 my-5 m-md-5" ng-controller="companiesController">
+        <h3 class="text-center">Company Details</h3>
+        <br />
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">NAME</th>
+                <th scope="col">LOCATION</th>
+                <th scope="col">CITY</th>
+                <th scope="col">COUNTRY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in companyList">
+                <td>{{$index + 1}}</td>
+                <td>{{x.company_name}}</td>
+                <td>{{x.company_location}}</td>
+                <td>{{x.city}}</td>
+                <td>{{x.country}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

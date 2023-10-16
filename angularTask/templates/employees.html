@@ -1,0 +1,43 @@
+<div class="Container-fluid">
+  <div class="row">
+    <horizontal-navbar></horizontal-navbar>
+  </div>
+  <div class="row">
+    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+      <vertical-navbar> </vertical-navbar>
+    </div>
+    <div class="col-8 col-md-10">
+      <div class="m-1 my-5 m-md-5" ng-controller="employeesController">
+        <h3 class="text-center">Employee Details</h3>
+        <br />
+        <div class="table-responsive"></div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">S.NO</th>
+              <th scope="col">NAME</th>
+              <th scope="col">ROLE</th>
+              <th scope="col">PHONE NUMBER</th>
+              <th scope="col">PERMANENT ADDRESS</th>
+              <th scope="col">RESIDENTIAL ADDRESS</th>
+              <th scope="col">LEAVES ALLOWED</th>
+              <th scope="col">SALARY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="x in employeeList|filter:searchInput">
+              <td>{{$index + 1}}</td>
+              <td>{{x.employee_name}}</td>
+              <td>{{x.employee_role}}</td>
+              <td>{{x.employee_phno}}</td>
+              <td>{{x.permanant_address}}</td>
+              <td>{{x.residential_address}}</td>
+              <td>{{x.leaves_per_month}}</td>
+              <td>{{x.salary_per_annum}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div ng-controller="loginController">
+  <div class="col-12 col-md-8 offset-md-2 registrationform">
+    <div class="card m-5 p-4 bg-info">
+      <div class="card-header align-items-center bg-white">
+        <h2 class="text-primary" style="text-align: center">Login</h2>
+        <div class="d-md-flex card-body bg-white">
+          <img
+            class="img-fluid col-12 col-md-7"
+            src="https://img.freepik.com/premium-vector/female-hands-typing-text-laptop-keyboard_575379-64.jpg"
+          />
+          <div id="loginForm" class="col-12 col-md-4">
+            <input
+              type="email"
+              class="form-control mb-2"
+              ng-model="email"
+              placeholder="Enter Email"
+              autocomplete="off"
+              ng-class="{'is-invalid':emailError}"
+            />
+            <p ng-show="emailError" class="text-danger">{{emailError}}</p>
+            <input
+              type="password"
+              class="form-control mb-2"
+              ng-model="password"
+              placeholder="enter password"
+              autocomplete="off"
+              ng-class="{'is-invalid':passwordError}"
+            />
+            <p ng-show="passwordError" class="text-danger">{{passwordError}}</p>
+            <p ng-show="error" class="text-danger">{{error}}</p>
+            <input
+              type="button"
+              class="bg-success text-white float-end rounded-2 w-100 p-1 fs-5"
+              ng-click="login()"
+              value="Login"
+            />
+            <p class="text-center pt-5">
+              <span class="me-2 me-md-0">Don't have an account?</span
+              ><a ui-sref="register" class="text-decoration-none"> Sign up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

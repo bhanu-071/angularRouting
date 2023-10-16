@@ -1,0 +1,119 @@
+<div class="Container-fluid">
+  <div class="row">
+    <horizontal-navbar></horizontal-navbar>
+  </div>
+  <div class="row">
+    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+      <vertical-navbar> </vertical-navbar>
+    </div>
+    <div class="col-8 col-md-10">
+      <div class="m-1 my-5 m-md-5" ng-controller="addSalaryController">
+        <h3 class="text-center">ADD SALARY</h3>
+        <br />
+        <div class="offset-3 col-5">
+          <div class="card">
+            <div class="card-title">
+              <h3 class="text-center" id="cardHeading"></h3>
+            </div>
+            <div class="card-body">
+              <label class="me-2 my-3">Company Name</label
+              ><select
+                class="form-select"
+                ng-model="companyName"
+                ng-options="x for x in companyNames"
+                ng-class="{'is-invalid':companyNameErr}"
+                ng-change="validateCompanyName()"
+              >
+                <option value="">Select</option>
+              </select>
+              <div ng-show="companyNameErr" class="text-danger">
+                {{companyNameErr}}
+              </div>
+              <label class="me-2 my-3">Employee ID</label
+              ><select
+                class="form-select"
+                ng-model="selectedEmployeeId"
+                ng-options="x for x in employeeIds"
+                ng-class="{'is-invalid':employeeIdErr}"
+                ng-change="validateEmployee()"
+              >
+                <option value="">Select</option>
+              </select>
+              <div class="text-danger mb-3" ng-show="employeeIdErr">
+                {{employeeIdErr}}
+              </div>
+              <div class="form-floating my-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="employeeName"
+                  placeholder=""
+                  ng-class="{'is-invalid':employeeNameErr}"
+                  ng-model="employeeName"
+                  readonly
+                />
+                <label for="employeeName">Employee Name</label>
+              </div>
+              <div class="text-danger mb-3" ng-show="employeeNameErr">
+                {{employeeNameErr}}
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="noOfLeaves"
+                  ng-model="noOfLeaves"
+                  placeholder=""
+                  ng-class="{'is-invalid':noOfLeavesErr}"
+                  ng-change="validateLeaves()"
+                />
+                <label for="noOfLeaves">number of Leaves</label>
+              </div>
+              <div class="text-danger mb-3" ng-show="noOfLeavesErr">
+                {{noOfLeavesErr}}
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="overtime"
+                  ng-model="overTime"
+                  placeholder="in hours"
+                  ng-class="{'is-invalid':overTimeErr}"
+                  ng-change="validateOverTime()"
+                />
+                <label for="overtime">overtime</label>
+              </div>
+              <div class="text-danger mb-3" ng-show="overTimeErr">
+                {{overTimeErr}}
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  class="form-control"
+                  id="salaryDate"
+                  ng-model="salaryDate"
+                  ng-class="{'is-invalid':salaryDateErr}"
+                  placeholder=""
+                  ng-change="validateSalaryDate()"
+                />
+                <label for="salaryDate">Salary Date</label>
+              </div>
+
+              <div class="text-danger mb-3" ng-show="salaryDateErr">
+                {{salaryDateErr}}
+              </div>
+              <div
+                class="btn bg-primary text-white rounded-2"
+                id="addSalaryBtn"
+                ng-click="add()"
+              >
+                Add Salary
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

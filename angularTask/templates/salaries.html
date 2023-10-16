@@ -1,0 +1,101 @@
+<div class="Container-fluid">
+  <div class="row">
+    <horizontal-navbar></horizontal-navbar>
+  </div>
+  <div class="row">
+    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+      <vertical-navbar> </vertical-navbar>
+    </div>
+    <div class="col-8 col-md-10">
+      <div class="m-1 my-5 m-md-5" ng-controller="salariesController">
+        <h3 class="text-center">Employee Details</h3>
+        <br />
+        <div class="form-control d-flex searchBox">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M20.031 20.79c.46.46 1.17-.25.71-.7l-3.75-3.76a7.904 7.904 0 0 0 2.04-5.31c0-4.39-3.57-7.96-7.96-7.96s-7.96 3.57-7.96 7.96c0 4.39 3.57 7.96 7.96 7.96c1.98 0 3.81-.73 5.21-1.94l3.75 3.75zM4.11 11.02c0-3.84 3.13-6.96 6.96-6.96c3.84 0 6.96 3.12 6.96 6.96s-3.12 6.96-6.96 6.96c-3.83 0-6.96-3.12-6.96-6.96z"
+            />
+          </svg>
+          <input
+            type="text"
+            class="border-0"
+            id="searchInput"
+            ng-model="searchInput"
+            placeholder=""
+          />
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">S.NO</th>
+                <th scope="col">EMPLOYEE CODE</th>
+                <th scope="col">LEAVES TAKEN</th>
+                <th scope="col">OVERTIME</th>
+                <th scope="col">SALARY DATE</th>
+                <th scope="col">AMOUNT</th>
+                <th scope="col">EMPLOYEE NAME</th>
+                <th scope="col">COMPANY NAME</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in salaryList|filter:searchInput">
+                <td>
+                  <input
+                    class="form-check-input border-1 border-secondary"
+                    ng-model="salaryList[$index].checked"
+                    type="checkbox"
+                    name="checkboxDelete"
+                  />
+                </td>
+                <td>{{$index + 1}}</td>
+                <td>{{x.employee_id}}</td>
+                <td>{{x.no_of_leaves}}</td>
+                <td>{{x.overtime_in_hours}}</td>
+                <td>{{x.salary_date}}</td>
+                <td>{{x.salary_per_month}}</td>
+                <td>{{x.employee_name}}</td>
+                <td>{{x.company_name}}</td>
+                <td>
+                  <view-modal></view-modal>
+                </td>
+
+                <td>
+                  <div
+                    class="btn rounded-2 text-white bg-success editBtn"
+                    ng-click="editSalary($index)"
+                  >
+                    edit
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="btn bg-danger text-white rounded-2"
+          id="deletesalaryBtn"
+          ng-click="deleteSalary()"
+        >
+          delete
+        </div>
+        <div
+          class="btn bg-primary text-white rounded-2"
+          id="addSalaryBtn"
+          ui-sref="addSalary"
+        >
+          Add Salary
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row" ng-controller="horizontalNavController">
+  <nav class="d-flex justify-content-between">
+    <div class="d-flex">
+      <div class="m-3 me-0 d-flex gap-2">
+        <img
+          class="img-fluid rounded-circle"
+          id="logo"
+          src="assets/images/logo.png"
+        />
+        <h1 class="text-white">CRM</h1>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div class="d-none d-md-block">
+        <p class="text-white my-0">Last Login</p>
+        <p class="text-white my-0">{{currentDate|date:"dd-MMM-yyyy"}}</p>
+        <p class="text-white my-0">{{currentDate|date:"h:m a"}}</p>
+      </div>
+      <div class="d-flex bg-secondary rounded-2 m-2 p-2 p-md-1 text-white">
+        <div class="avatar-bg">
+          <img
+            class="img-fluid rounded-circle"
+            src="https://spruko.com/demo/ynex/dist/assets/images/faces/10.jpg"
+            alt="User Image"
+          />
+        </div>
+        <div class="d-none d-md-block">
+          <p class="p-0 m-0" ng-model="welcomeMsg">{{welcomeMsg}}</p>
+          <p class="p-0 m-0" ng-model="userEmail">{{userEmail}}</p>
+        </div>
+      </div>
+      <div class="d-md-flex bg-secondary rounded-2 m-2 p-2 text-white">
+        <div class="btn border-0 text-white" ng-click="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
