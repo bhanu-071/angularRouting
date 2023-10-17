@@ -8,7 +8,7 @@ app.controller("loginController", [
     $scope.password = "";
     var userId = localStorage.getItem("userId");
     if (userId) {
-      $state.go("home");
+      $state.go("Home");
     }
     $scope.validateEmail = function () {
       $scope.emailError = "";
@@ -54,7 +54,7 @@ app.controller("loginController", [
               if (response.data.status == true) {
                 console.log(response.data.data);
                 localStorage.setItem("userId", response.data.data);
-                $state.go("home");
+                $state.go("Home");
               } else {
                 Swal.fire("Oops!", response.data.message, "error");
               }

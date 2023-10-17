@@ -13,7 +13,7 @@ app.config([
         templateUrl: "./templates/register.html",
         controller: "registerController",
       })
-      .state("home", {
+      .state("Home", {
         url: "/home",
         templateUrl: "./templates/home.html",
         controller: "homeController",
@@ -38,6 +38,6 @@ app.config([
         templateUrl: "./templates/addSalary.html",
         controller: "addSalaryController",
       });
-    $urlRouterProvider.otherwise("/register");
+    $urlRouterProvider.otherwise("/login");
   },
 ]);

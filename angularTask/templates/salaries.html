@@ -1,14 +1,14 @@
 <div class="Container-fluid">
-  <div class="row">
-    <horizontal-navbar></horizontal-navbar>
+  <div class="row mx-0">
+    <horizontal-navbar class="p-0"></horizontal-navbar>
   </div>
-  <div class="row">
-    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+  <div class="row mx-0">
+    <div class="d-none d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
       <vertical-navbar> </vertical-navbar>
     </div>
-    <div class="col-8 col-md-10">
+    <div class="col-12 col-md-10" id="addTable">
       <div class="m-1 my-5 m-md-5" ng-controller="salariesController">
-        <h3 class="text-center">Employee Details</h3>
+        <h3 class="text-center">Salary Details</h3>
         <br />
         <div class="form-control d-flex searchBox">
           <svg
@@ -44,19 +44,11 @@
                 <th scope="col">EMPLOYEE NAME</th>
                 <th scope="col">COMPANY NAME</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="x in salaryList|filter:searchInput">
-                <td>
-                  <input
-                    class="form-check-input border-1 border-secondary"
-                    ng-model="salaryList[$index].checked"
-                    type="checkbox"
-                    name="checkboxDelete"
-                  />
-                </td>
+                <td><input class="form-check-input border-1 border-secondary" ng-model="salaryList[$index].checked"  type="checkbox" name="checkboxDelete"></td>
                 <td>{{$index + 1}}</td>
                 <td>{{x.employee_id}}</td>
                 <td>{{x.no_of_leaves}}</td>
@@ -66,17 +58,183 @@
                 <td>{{x.employee_name}}</td>
                 <td>{{x.company_name}}</td>
                 <td>
-                  <view-modal></view-modal>
-                </td>
-
-                <td>
-                  <div
-                    class="btn rounded-2 text-white bg-success editBtn"
-                    ng-click="editSalary($index)"
+                  <button
+                    type="button"
+                    class="btn btn-primary viewBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#viewModal"
+                    ng-click="salaryDetail(x.id)"
                   >
-                    edit
+                    View
+                  </button>
+
+                  <div
+                    class="modal fade"
+                    id="viewModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="modalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modalLabel">
+                            Employee Name: {{employee_name}}
+                            <br />
+                            Company Name: {{company_name}}
+                            <br />
+                            Salary Date: {{salary_date}}
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            id="closeBtn"
+                          ></button>
+                        </div>
+                        <div class="modal-body" id="modalBody">
+                          <div class="row">
+                            <div class="col-6">
+                              <h3>Earnings</h3>
+                              <br />
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Basic Pay</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{basic_pay}}</p>
+                                </div>
+                              </div>
+                            
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Allowances</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{allowances}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Performance Bonus</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{performance_bonus}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Benefits</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{benifits}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Overtime Pay</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{overtime_pay}}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <h3>Deductions</h3>
+                              <br />
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Leaves Deduction</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{leaves_deduction}}</p>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Income Tax</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{income_tax}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Insurance</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{insurances}}</p>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <p>Provident Fund</p>
+                                </div>
+                                <div class="col-7">
+                                  <p>: {{provident_fund}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-6">
+                            <div class="row bg-primary bg-opacity-50 text-white">
+                             <div class="col-5">
+                             <p><h5>Gross Salary</h5></p>
+                             </div>
+                             <div class="col-7">
+                             <p><h5>: {{
+                               benifits + basic_pay + allowances + performance_bonus + overtime_pay
+                             }}</h5></p>
+                             </div>
+                            </div>
+                            </div>
+                            <div class="col-6">
+                            <div class="row bg-danger bg-opacity-50 text-white">
+                             <div class="col-5">
+                             <p><h5>Total Deductions</h5></p>
+                             </div>
+                             <div class="col-7">
+                             <p><h5>: {{
+                               income_tax + insurances + leaves_deduction + provident_fund
+                             }}</h5></p>
+                             </div>
+                            </div>
+                            </div>
+                            </div>
+                            <br/>
+                            <div class="row bg-success bg-opacity-50 text-white">
+                             <div class="d-flex offset-5 col-3 p-2">
+                             <p><h4>Net Salary</h4></p>
+                             <p><h4 class="ms-2">  :  {{salary_per_month}}</h4></p>
+                             </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-primary printBtn"
+                            ng-click="printSalaryInvoice()"
+                          >
+                            Print
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </td>
+
+                
               </tr>
             </tbody>
           </table>

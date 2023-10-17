@@ -4,6 +4,10 @@ app.controller("registerController", [
   "$filter",
   "$http",
   function ($scope, $state, $filter, $http) {
+    var userId = localStorage.getItem("userId");
+    if (userId) {
+      $state.go("Home");
+    }
     $scope.firstName = "";
     $scope.lastName = "";
     $scope.selectedGender = "";

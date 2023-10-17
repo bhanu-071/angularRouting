@@ -1,6 +1,11 @@
 app.controller("verticalNavController", [
   "$scope",
   function ($scope) {
-    $scope.navList = ["Company details", "Employees details", "Salary details"];
+    $scope.navList = [
+      "Home",
+      "Company details",
+      "Employees details",
+      "Salary details",
+    ];
   },
 ]);

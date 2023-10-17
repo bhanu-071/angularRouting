@@ -1,12 +1,12 @@
-<div class="Container-fluid">
-  <div class="row">
-    <horizontal-navbar></horizontal-navbar>
+<div class="Container-fluid p-0 m-0">
+  <div class="row mx-0">
+    <horizontal-navbar class="p-0"></horizontal-navbar>
   </div>
-  <div class="row">
-    <div class="d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
+  <div class="row mx-0">
+    <div class="d-none d-md-block col-4 col-md-2 m-0 p-0" id="onlyMenubar">
       <vertical-navbar> </vertical-navbar>
     </div>
-    <div class="col-8 col-md-10">
+    <div class="col-12 col-md-10" id="addTable">
       <div class="m-1 my-5 m-md-5" ng-controller="companiesController">
         <h3 class="text-center">Company Details</h3>
         <br />

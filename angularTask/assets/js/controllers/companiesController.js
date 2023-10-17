@@ -10,7 +10,11 @@ app.controller("companiesController", [
     })
       .then(
         function (response) {
-          $scope.companyList = response.data;
+          if (response.data.status == true) {
+            $scope.companyList = response.data.data;
+          } else {
+            Swal.fire("Oops!", response.data.message, "error");
+          }
         },
         function (reject) {
           Swal.fire("Sorry!", "Some error occur", "error");

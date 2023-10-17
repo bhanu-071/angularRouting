@@ -10,7 +10,12 @@ app.controller("employeesController", [
     })
       .then(
         function (response) {
-          $scope.employeeList = response.data;
+          console.log(response);
+          if (response.data.status == true) {
+            $scope.employeeList = response.data.data;
+          } else {
+            Swal.fire("Oops!", response.data.message, "error");
+          }
         },
         function (reject) {
           Swal.fire("Sorry!", "Some error occur", "error");

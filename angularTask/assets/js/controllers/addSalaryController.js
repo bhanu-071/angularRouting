@@ -1,7 +1,8 @@
 app.controller("addSalaryController", [
   "$http",
   "$scope",
-  function ($http, $scope) {
+  "$state",
+  function ($http, $scope, $state) {
     var userId = localStorage.getItem("userId");
     $http({
       method: "POST",
@@ -11,6 +12,7 @@ app.controller("addSalaryController", [
       .then(
         function (response) {
           var keys = Object.keys(response.data);
+          keys.splice(0, 3);
           $scope.companyNames = keys;
           //$scope.companyName = "";
           $scope.employeeName = "";
@@ -39,6 +41,7 @@ app.controller("addSalaryController", [
           };
           $scope.validateEmployee = function () {
             $scope.employeeIdErr = "";
+            $scope.focusEmployeeName = false;
             if ($scope.selectedEmployeeId == undefined) {
               $scope.employeeIdErr = "Please select employee id";
               return false;
@@ -46,6 +49,7 @@ app.controller("addSalaryController", [
               for (i of response.data[$scope.companyName]) {
                 if ($scope.selectedEmployeeId == i.id) {
                   $scope.employeeName = i.employee_name;
+                  document.getElementById("employeeName").focus();
                   $scope.employeeNameErr = "";
                   break;
                 }
@@ -123,15 +127,20 @@ app.controller("addSalaryController", [
               })
                 .then(
                   function (response) {
-                    console.log(response);
-                    Swal.fire("Good job!", response.data.message, "success");
-                    $state.go("Salary details");
+                    if (response.data.status == true) {
+                      Swal.fire("Good job!", response.data.message, "success");
+                      $state.go("Salary details");
+                    } else {
+                      Swal.fire("Oops!", response.data.message, "error");
+                    }
                   },
                   function (reject) {
                     Swal.fire("Sorry!", "Some error occur", "error");
                   }
                 )
                 .catch(function (error) {
+                  console.log("hii insert");
+                  console.log(error);
                   Swal.fire("Sorry!", "Something went wrong", "error");
                 });
             }
